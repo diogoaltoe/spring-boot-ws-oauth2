@@ -22,5 +22,8 @@ public interface UserRepository extends PagingAndSortingRepository<User, String>
 
     @Query
     User findByEmailAndResetPasswordKey(String email, String resetPasswordKey);
+    
+    @Query
+    User findByUsernameAndActivationKey(String username, String activationKey);
 
 }

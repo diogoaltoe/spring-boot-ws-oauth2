@@ -7,6 +7,7 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -59,8 +60,11 @@ public class OAuth2Configuration {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/hello/", "/person", "/user").permitAll()
-                    .antMatchers("/secure/**", "/product/**").authenticated();
+                    .antMatchers("/secure/**", "/person/**", "/product/**").authenticated()
+                    .antMatchers(HttpMethod.GET, "/user/**").authenticated()
+                    .antMatchers(HttpMethod.PUT, "/user/**").authenticated()
+                    .antMatchers(HttpMethod.DELETE, "/user/**").authenticated()
+                    .antMatchers(HttpMethod.POST, "/user").permitAll();
 
         }
 

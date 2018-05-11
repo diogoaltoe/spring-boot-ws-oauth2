@@ -1,11 +1,11 @@
 package com.diogoaltoe.domain;
 
 import org.hibernate.validator.constraints.Email;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-import java.io.Serializable;
 import java.util.Set;
 
 @Entity
@@ -14,10 +14,12 @@ public class User {
 
     @Id
     @Column(updatable = false, nullable = false)
+    //@JsonIgnore
     @Size(min = 0, max = 50)
     private String username;
 
-    @Size(min = 0, max = 500)
+    //@JsonIgnore
+    @Size(min = 0, max = 100)
     private String password;
 
     @Size(min = 0, max = 50)
@@ -27,7 +29,7 @@ public class User {
     @Size(min = 0, max = 50)
     private String email;
 
-    private boolean activated;
+    private boolean activated = true;
 
     @Size(min = 0, max = 100)
     @Column(name = "activationkey")
@@ -37,11 +39,12 @@ public class User {
     @Column(name = "resetpasswordkey")
     private String resetPasswordKey;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER, targetEntity = Authority.class)
     @JoinTable(
             name = "user_authority",
             joinColumns = @JoinColumn(name = "username"),
             inverseJoinColumns = @JoinColumn(name = "authority"))
+    //@JsonManagedReference
     private Set<Authority> authorities;
 
     public String getUsername() {
@@ -57,7 +60,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
     
     public String getName() {
@@ -89,7 +92,7 @@ public class User {
     }
 
     public void setActivationKey(String activationKey) {
-        this.activationKey = activationKey;
+    	this.activationKey = activationKey;
     }
 
     public String getResetPasswordKey() {

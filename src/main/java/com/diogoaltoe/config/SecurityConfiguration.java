@@ -12,8 +12,9 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
+//import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler;
 
 
@@ -26,7 +27,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new StandardPasswordEncoder();
+    	// Define the type of encode
+        return new BCryptPasswordEncoder();
     }
 
     @Autowired
@@ -48,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/activate")
                 .antMatchers("/lostpassword")
                 .antMatchers("/resetpassword")
-                .antMatchers("/hello")
+                //.antMatchers("/hello")
                 .antMatchers("/person")
         		.antMatchers("/product");
 
