@@ -15,21 +15,21 @@ public class User {
     @Id
     @Column(updatable = false, nullable = false)
     //@JsonIgnore
-    @Size(min = 0, max = 50)
+    @Size(min = 3, max = 50)
     private String username;
 
     //@JsonIgnore
-    @Size(min = 0, max = 100)
+    @Size(min = 8, max = 100)
     private String password;
 
-    @Size(min = 0, max = 50)
+    @Size(min = 3, max = 50)
     private String name;
     
     @Email
-    @Size(min = 0, max = 50)
+    @Size(min = 5, max = 50)
     private String email;
 
-    private boolean activated = true;
+    private boolean activated;
 
     @Size(min = 0, max = 100)
     @Column(name = "activationkey")
@@ -39,7 +39,7 @@ public class User {
     @Column(name = "resetpasswordkey")
     private String resetPasswordKey;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER, targetEntity = Authority.class)
+    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinTable(
             name = "user_authority",
             joinColumns = @JoinColumn(name = "username"),
