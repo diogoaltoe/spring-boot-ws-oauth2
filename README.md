@@ -87,10 +87,16 @@ Server Response:
 
 ### Access secure resource with token
 ```
-curl -i http://diogoaltoe.com/spring-boot-ws-oauth2/product/
+curl -i http://localhost:<port>/spring-boot-ws-oauth2/product/
 
 Server Response:
-{"timestamp":1444985908768,"status":401,"error":"Unauthorized","message":"Access Denied","path":"/spring-boot-ws-oauth2/product/"}
+{
+	"timestamp":1444985908768,
+	"status":401,
+	"error":"Unauthorized",
+	"message":"Access Denied",
+	"path":"/spring-boot-ws-oauth2/product/"
+}
 ```
 
 ### Fetching refresh_token
@@ -98,7 +104,13 @@ Server Response:
 curl -vu wsapp:secret 'http://localhost:<port>/spring-boot-ws-oauth2/oauth/token?username=user@user.com&password=12345678&grant_type=password'
 
 Server Response:
-{"access_token":"92457844-4d4f-4f5a-b053-7f5074d6y892","token_type":"bearer","refresh_token":"e6f8624f-213d-4343-a971-980e83f734be","expires_in":1738,"scope":"read write"}
+{
+	"access_token":"92457844-4d4f-4f5a-b053-7f5074d6y892",
+	"token_type":"bearer",
+	"refresh_token":"e6f8624f-213d-4343-a971-980e83f734be",
+	"expires_in":1738,
+	"scope":"read write"
+}
 ```
 
 ### Fetching acess_token by submitting refresh_token
@@ -106,22 +118,28 @@ Server Response:
 curl -vu wsapp:secret 'http://localhost:<port>/spring-boot-ws-oauth2/oauth/token?grant_type=refresh_token&refresh_token=<refresh_token>'
 
 Server Response:
-{"access_token":"821c99d4-2c9f-4990-b68d-18eacaff54b2","token_type":"bearer","refresh_token":"e6f8624f-213d-4343-a971-980e83f734be","expires_in":1799,"scope":"read write"}
+{
+	"access_token":"821c99d4-2c9f-4990-b68d-18eacaff54b2",
+	"token_type":"bearer",
+	"refresh_token":"e6f8624f-213d-4343-a971-980e83f734be",
+	"expires_in":1799,
+	"scope":"read write"
+}
 ```
 
 ### Access secure resource sucessfully
 ```
-curl -i -H "Authorization: Bearer <access_token>" http://diogoaltoe.com/spring-boot-ws-oauth2/product/
+curl -i -H "Authorization: Bearer <access_token>" http://localhost:<port>/spring-boot-ws-oauth2/product/
 
 Server Response:
 {
   "_links" : {
     "self" : {
-      "href" : "http://diogoaltoe.com/spring-boot-ws-oauth2/product{?page,size,sort}",
+      "href" : "http://localhost:<port>/spring-boot-ws-oauth2/product{?page,size,sort}",
       "templated" : true
     },
     "search" : {
-      "href" : "http://diogoaltoe.com/spring-boot-ws-oauth2/product/search"
+      "href" : "http://localhost:<port>/spring-boot-ws-oauth2/product/search"
     }
   },
   "_embedded" : {
@@ -131,7 +149,7 @@ Server Response:
       "cost" : 50.5,
       "_links" : {
         "self" : {
-          "href" : "http://diogoaltoe.com/spring-boot-ws-oauth2/product/3"
+          "href" : "http://localhost:<port>/spring-boot-ws-oauth2/product/3"
         }
       }
     }, {
@@ -140,7 +158,7 @@ Server Response:
       "cost" : 15.7,
       "_links" : {
         "self" : {
-          "href" : "http://diogoaltoe.com/spring-boot-ws-oauth2/product/4"
+          "href" : "http://localhost:<port>/spring-boot-ws-oauth2/product/4"
         }
       }
     }, {
@@ -149,7 +167,7 @@ Server Response:
       "cost" : 10.5,
       "_links" : {
         "self" : {
-          "href" : "http://diogoaltoe.com/spring-boot-ws-oauth2/product/6"
+          "href" : "http://localhost:<port>/spring-boot-ws-oauth2/product/6"
         }
       }
     }, {
@@ -158,7 +176,7 @@ Server Response:
       "cost" : 34.98,
       "_links" : {
         "self" : {
-          "href" : "http://diogoaltoe.com/spring-boot-ws-oauth2/product/19"
+          "href" : "http://localhost:<port>/spring-boot-ws-oauth2/product/19"
         }
       }
     }, {
@@ -167,7 +185,7 @@ Server Response:
       "cost" : 25.9,
       "_links" : {
         "self" : {
-          "href" : "http://diogoaltoe.com/spring-boot-ws-oauth2/product/5"
+          "href" : "http://localhost:<port>/spring-boot-ws-oauth2/product/5"
         }
       }
     }, {
@@ -176,23 +194,14 @@ Server Response:
       "cost" : 32.5,
       "_links" : {
         "self" : {
-          "href" : "http://diogoaltoe.com/spring-boot-ws-oauth2/product/2"
-        }
-      }
-    }, {
-      "name" : "Caneta",
-      "description" : "Bic",
-      "cost" : 1.2,
-      "_links" : {
-        "self" : {
-          "href" : "http://diogoaltoe.com/spring-boot-ws-oauth2/product/20"
+          "href" : "http://localhost:<port>/spring-boot-ws-oauth2/product/2"
         }
       }
     } ]
   },
   "page" : {
     "size" : 20,
-    "totalElements" : 7,
+    "totalElements" : 6,
     "totalPages" : 1,
     "number" : 0
   }
