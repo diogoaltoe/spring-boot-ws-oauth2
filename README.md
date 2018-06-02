@@ -45,7 +45,7 @@ You can use another project like Client [android-ws-oauth2](https://github.com/d
 
 You can download the WAR file on [Releases Page](https://github.com/diogoaltoe/spring-boot-ws-oauth2/releases), install on your host server and test the project.
 
-# Build and Run
+## Build and Run
 ```
 Run as > Maven clean
 ```
@@ -56,7 +56,7 @@ Run as > Maven build
 Run as > Spring Boot App
 ```
 
-# Usage
+## Usage
 
 ### Checking app is deployed sucessfullly
 ```
