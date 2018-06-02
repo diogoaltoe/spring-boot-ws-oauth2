@@ -41,6 +41,9 @@ Run the project.
 
 You can use another project like Client [android-ws-oauth2](https://github.com/diogoaltoe/android-ws-oauth2) or any Web Service RESTful Client extension for browser (Chrome or Firefox).
 
+## Testing
+
+You can download the WAR file on [Releases Page](https://github.com/diogoaltoe/spring-boot-ws-oauth2/releases), install on your host server and test the project.
 
 # Build and Run
 ```
